@@ -20,24 +20,69 @@
     let resultado = 0;
     let operadorReal = true;
     let final = ``;
-
+    let tipo = '';
+    let sinal = '';
+    let classe = '';
+    
     switch (op){
         case `+`: resultado = n1 + n2;
-        break
+            verificador();
+            break;
         case `-`: resultado = n1 - n2;
-        break
-        case `*`: resultado = n1 * n2;
-        break
-        case `/`: resultado = n1 / n2;
-        break
+            verificador();
+            break;
+        case `*`:
+            resultado = n1 * n2;
+            verificador();
+            break;
+        case `/`:
+            switch(n2 === 0) {
+                case true:
+                    resultado = 0;
+                    verificador();
+                    break;
+                default:
+                    resultado = n1 / n2;
+                    verificador();
+                    break;
+            }
+            break;
         default: operadorReal = false;
-        alert(`Seu operador não é válido. (+ adição; - subtração; * multiplicação; / divisão)`);
-        break
+            alert(`Seu operador não é válido. (+ adição; - subtração; * multiplicação; / divisão)`);
+            break;
     }
-        //VERIFICACOES
-
-        
-
+    //VERIFICACOES
+    function verificador(){
+        switch(true) {
+            case (resultado % 2 === 0):
+                tipo = 'par';
+                final = `O resultado é ${tipo}, `;
+                break;
+            default:
+                tipo = 'ímpar';
+                final = `O resultado é ${tipo}, `;
+        }
+        switch(true) {
+            case (resultado < 0):
+                sinal = 'negativo';
+                final = final + `${sinal} e `;
+                break;
+            default:
+                sinal = 'positivo';
+                final = final + `${sinal} e `;
+        }
+        switch(true) {
+            case (Number.isInteger(resultado)):
+                classe = 'inteiro';
+                final = final + `${classe}.`;
+                break;
+            default:
+                classe = 'decimal';
+                final = final + `${classe}.`;
+        }
+    alert(`O resultado da operação é ${resultado} .\n
+${final}`);
+}
     //SAÍDA
 
 </script>
