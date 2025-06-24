@@ -24,65 +24,83 @@
     let sinal = ``;
     let classe = ``;
     
-    switch (op){
-        case `+`: resultado = n1 + n2;
-            verificador();
-            break;
-        case `-`: resultado = n1 - n2;
-            verificador();
-            break;
-        case `*`:
-            resultado = n1 * n2;
-            verificador();
-            break;
-        case `/`:
-            switch(n2 === 0) {
-                case true:
-                    resultado = 0;
-                    verificador();
-                    break;
-                default:
-                    resultado = n1 / n2;
-                    verificador();
-                    break;
-            }
-            break;
-        default: operadorReal = false;
-            alert(`Seu operador não é válido. (+ adição; - subtração; * multiplicação; / divisão)`);
-            break;
+    switch (true){
+        case isNaN(n1) || isNaN(n2):
+            alert(`Insira apenas numeros, sem nenhuma caractere especial`);
+        break;
+        default:
+            validadorOP();
+        break;
     }
+
+    function validadorOP(){
+        switch (op){
+            case `+`:
+                resultado = n1 + n2;
+                verificador();
+            break;
+            case `-`:
+                resultado = n1 - n2;
+                verificador();
+            break;
+            case `*`:
+                resultado = n1 * n2;
+                verificador();
+            break;
+            case `/`:
+                switch(n2 === 0) {
+                    case true:
+                        resultado = 0;
+                        verificador();
+                    break;
+                    default:
+                        resultado = n1 / n2;
+                        verificador();
+                    break;
+                    }
+            break;
+            default: operadorReal = false;
+                alert(`Seu operador não é válido. (+ adição; - subtração; * multiplicação; / divisão)`);
+            break;
+        }
+    }
+
     //VERIFICACOES
+
     function verificador(){
         switch(true) {
             case (resultado % 2 === 0):
                 tipo = 'par';
                 final = `O resultado é ${tipo}, `;
-                break;
+            break;
             default:
                 tipo = 'ímpar';
                 final = `O resultado é ${tipo}, `;
+            break;
         }
         switch(true) {
             case (resultado < 0):
                 sinal = 'negativo';
                 final = final + `${sinal} e `;
-                break;
+            break;
             default:
                 sinal = 'positivo';
                 final = final + `${sinal} e `;
+            break;
         }
         switch(true) {
             case (Number.isInteger(resultado)):
                 classe = 'inteiro';
                 final = final + `${classe}.`;
-                break;
+            break;
             default:
                 classe = 'decimal';
                 final = final + `${classe}.`;
+            break;
         }
-    alert(`O resultado da operação é ${resultado} .\n
-${final}`);
-}
+
     //SAÍDA
 
+    alert(`O resultado da operação é ${resultado} .\n${final}`);
+    }
 </script>
