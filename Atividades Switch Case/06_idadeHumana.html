@@ -44,7 +44,7 @@
   }
 
   //Faz as verificaçoes de numeros e string respectivamente, validados todos um por vez
-  switch (/[a-zA-Z]/.test(cao)) {
+  switch (isNaN(cao)){
     case true:
       alert(`INFORME SOMENTE NUMEROS em "idade de seu cão"`);
       break;
